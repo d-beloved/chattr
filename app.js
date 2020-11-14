@@ -35,4 +35,11 @@ io.on('connection', socket => {
     io.sockets.emit('receive_message', {message: data.message, username: socket.username})
   })
 
+  // handles the 'is typing' functionality
+  // When we use broadcast, every user except the one who is typing
+  // the message receives the typing event from the server
+  socket.on('typing', data => {
+    socket.broadcast.emit('typing', {username: socket.username})
+  })
+
 });

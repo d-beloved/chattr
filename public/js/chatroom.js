@@ -33,4 +33,16 @@
     messageList.appendChild(listItem);
   })
 
+  // notifies if another user is typing
+  let info = document.querySelector('.info')
+
+  message.addEventListener('keypress', e => {
+    socket.emit('typing')
+  })
+
+  socket.on('typing', data => {
+    info.textContent = data.username + ' is typing';
+    setTimeout(() => {info.textContent=''}, 3000)
+  })
+
 })()
