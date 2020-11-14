@@ -27,4 +27,12 @@ io.on('connection', socket => {
   socket.on('change_username', data => {
     socket.username = data.username;
   })
+
+  // handles new message sent and it emits a receive_message event
+  // to the connected clients with data about the new message
+  socket.on('new_message', data => {
+    console.log("new message");
+    io.sockets.emit('receive_message', {message: data.message, username: socket.username})
+  })
+
 });
