@@ -10,9 +10,8 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-const PORT = process.env.PORT || 3000;
-const server = app.listen(process.env.PORT || 3000, () => {
-  console.log(`server is running on port ${PORT}`);
+const server = app.listen(3000, () => {
+  console.log(`server is running on port ${server.address().port}`);
 });
 
 // initializing socket.io from the express server connection and then we set up an event
